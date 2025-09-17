@@ -1,5 +1,7 @@
 # *microEOS*
 
+<img align="right" width="100px" src="/img/microEOS-white.png">
+
 Teensy based USB interpreter for the ETC microvisionFX lighting console. Send 
 OSC packets over USB to ETC EOS.
 
