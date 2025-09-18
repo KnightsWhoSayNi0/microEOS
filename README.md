@@ -46,3 +46,5 @@ TODO:
 - Figure out what to do with effects section
 - Cram mini pc inside microvisionFX chassis
 
+___
+*I know the code is ass, I'm sorry*
