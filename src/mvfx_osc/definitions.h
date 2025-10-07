@@ -47,10 +47,22 @@
 #define WHEEL_B 26    //19
 
 /****************************************
+    enums
+****************************************/
+
+// console key mode
+enum mode {
+  EOS,		// mode 1
+  ONYX, 	// mode 2
+  MA		// mode 3
+};
+
+/****************************************
     look-up tables
 ****************************************/
 
-const char *kybdLUT[8][7] = {
+const char *eos_kybd_pre = "/eos/key/"
+const char *kybdLUT[8][7] = { 
   { "softkey_6",    "softkey_5",    "softkey_4",  "softkey_3",      "softkey_2",  "softkey_1",  "effects" },
   { "",             "",             "macro",      "more_softkeys",  "load",       "blackout",   "" },
   { "stopback",     "go",           "park",       "patch",          "blind",      "live",       "focus_palette" },
@@ -82,12 +94,35 @@ const char *kybdLUT_fn_shift_LUT[8][7] = {
   { "",             "",             "",           "",               "",           "",           "" },
   { "",             "level",        "",           "",               "",           "",           "" }
 };
-  
+
+const char *eos_fader_pre = "/eos/fader/"
 const char *faderLUT[3][8] = {
   { "D", "C", "0/2", "", "", "", "", "" },
   { "1/5", "1/6", "0/1", "1/4", "1/3", "99/1", "1/2", "1/1" },
   { "", "", "", "", "", "", "", "" } // effects returns; not used rn
 };
+
+// onyx LUTs (TODO: implement switching later)
+
+const char *onyx_kybd_pre = "/Mx/button/"
+const char *onyx_kybd_LUT[8][7] = {
+  {"    ", "    ", "    ", "    ", "    ", "    ", "    "},
+  {"    ", "    ", "    ", "    ", "    ", "    ", "    "},
+  {"    ", "    ", "4332", "4331", "2001", "2003", "5107"},
+  {"5103", "5215", "5211", "5210", "5214", "6402", "5102"},
+  {"5401", "5302", "5209", "5208", "5207", "6401", "    "},
+  {"5411", "5301", "5206", "5205", "5204", "5413", "    "},
+  {"6001", "5216", "5203", "5202", "5201", "5412", "    "},
+  {"5106", "5402", "5213", "5212", "5200", "5104", "    "}
+}
+
+const char *onyx_fader_pre = "/Mx/fader/"
+const char *onyx_fader_LUT[3][8] = {
+  { "", "", "2232", "", "", "", "", "" },
+  { "4243", "4253", "2222", "4233", "4223", "2202", "4213", "4205" },
+  { "", "", "", "", "", "", "", "" }
+};
+
 
 // LED macros
 #define LED_BO    0
