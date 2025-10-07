@@ -244,7 +244,10 @@ void setup()
   // for the serial port to open, but meanwhile the handshake message was
   // sent from Eos
   SLIPSerial.beginPacket();
-  SLIPSerial.write((const uint8_t*)HANDSHAKE_REPLY.c_str(), (size_t)HANDSHAKE_REPLY.length());
+  SLIPSerial.write(
+    (const uint8_t*)EOS_HANDSHAKE_REPLY.c_str(), 
+    (size_t)EOS_HANDSHAKE_REPLY.length()
+  );
   SLIPSerial.endPacket();
 
   delay(500); // wait to start program loop
