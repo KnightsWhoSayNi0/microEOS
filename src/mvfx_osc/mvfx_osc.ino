@@ -67,7 +67,7 @@ bool keyState[8][7];
 uint8_t faderState[3][8];
 
 Encoder wheel(WHEEL_B, WHEEL_A);
-int32_t wheel_val = 0;
+int32_t wheelVal = 0;
 
 /********************************************************************************
     local functions
@@ -76,11 +76,14 @@ int32_t wheel_val = 0;
 void parseOSCMessage(String& msg)
 {
   // check to see if this is the handshake string
-  if (msg.indexOf(HANDSHAKE_QUERY) != -1)
+  if (msg.indexOf(EOS_HANDSHAKE_QUERY) != -1)
   {
     // handshake string found!
     SLIPSerial.beginPacket();
-    SLIPSerial.write((const uint8_t*)HANDSHAKE_REPLY.c_str(), (size_t)HANDSHAKE_REPLY.length());
+    SLIPSerial.write(
+      (const uint8_t*)EOS_HANDSHAKE_REPLY.c_str(), 
+      (size_t)EOS_HANDSHAKE_REPLY.length()
+    );
     SLIPSerial.endPacket();
 
     delay(1);
@@ -295,7 +298,7 @@ void loop()
     {
 
       if (row == 0 && col == 6)
-      {
+      {           // i believe this is a problem with my hardware
         continue; // temporary hack ; remove? TODO
       }
 
@@ -303,18 +306,18 @@ void loop()
       
       if (val == HIGH && keyState[row][col] == false)
       {
-        String keyMsg("/eos/key/");
+        String keyMsg(eosKybdPre);
         
         if (keyState[1][0] == false) // is fn key down
         {
-          keyMsg.concat(kybdLUT[row][col]);
+          keyMsg.concat(eosKybdLUT[row][col]);
         } else
         {
           if (keyState[7][5] == false) // is shift key down
           {
-            keyMsg.concat(kybd_fn_LUT[row][col]);
+            keyMsg.concat(eosKybdFnLUT[row][col]);
           } else {
-            keyMsg.concat(kybdLUT_fn_shift_LUT[row][col]);
+            keyMsg.concat(eosKybdFnShiftLUT[row][col]);
           }
         }
         
@@ -391,8 +394,8 @@ void loop()
       {
         faderState[chip][chan] = byteValue;
 
-        String faderMsg("/eos/fader/");
-        faderMsg.concat(faderLUT[chip][chan]);
+        String faderMsg(eosFaderPre);
+        faderMsg.concat(eosFaderLUT[chip][chan]);
         sendOSCMessage_float(faderMsg, (float)faderState[chip][chan] / 255.0f);
       }
 
@@ -440,11 +443,11 @@ void loop()
 
   // wheel
 
-  wheel_val = wheel.readAndReset();
-  if (wheel_val != 0)
+  wheelVal = wheel.readAndReset();
+  if (wheelVal != 0)
   {
-    String msg("/eos/wheel/level");
-    sendOSCMessage_int(msg, wheel_val);
+    String msg(eosWheelPre);
+    sendOSCMessage_int(msg, wheelVal);
   }
 
   delay(20);

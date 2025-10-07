@@ -61,8 +61,12 @@ enum mode {
     look-up tables
 ****************************************/
 
-const char *eos_kybd_pre = "/eos/key/"
-const char *kybdLUT[8][7] = { 
+// eos
+const String EOS_HANDSHAKE_QUERY = "ETCOSC?";
+const String EOS_HANDSHAKE_REPLY = "OK";
+
+const char *eosKybdPre = "/eos/key/";
+const char *eosKybdLUT[8][7] = { 
   { "softkey_6",    "softkey_5",    "softkey_4",  "softkey_3",      "softkey_2",  "softkey_1",  "effects" },
   { "",             "",             "macro",      "more_softkeys",  "load",       "blackout",   "" },
   { "stopback",     "go",           "park",       "patch",          "blind",      "live",       "focus_palette" },
@@ -73,7 +77,7 @@ const char *kybdLUT[8][7] = {
   { "time",         "cueonlytrack", ".",          "0",              "clear_cmd",  "shift",      "" }
 };
 
-const char *kybd_fn_LUT[8][7] = {
+const char *eosKybdFnLUT[8][7] = {
   { "fader_6",      "fader_5",      "fader_4",    "fader_3",        "fader_2",    "fader_1",    "fader_control" },
   { "",             "",             "learn",      "",               "",           "",           "" },
   { "",             "",             "undo",       "recall_from",    "copy_to",    "label",      "beam_palette" },
@@ -84,7 +88,7 @@ const char *kybd_fn_LUT[8][7] = {
   { "delay",        "level",        "",           "",               "",           "",           "" }
 };
 
-const char *kybdLUT_fn_shift_LUT[8][7] = {
+const char *eosKybdFnShiftLUT[8][7] = {
   { "",             "",             "",           "",               "",           "",           "" },
   { "",             "",             "",           "",               "",           "",           "" },
   { "",             "",             "capture",    "block",          "assert",     "query",      "intensity_palette" },
@@ -95,17 +99,19 @@ const char *kybdLUT_fn_shift_LUT[8][7] = {
   { "",             "level",        "",           "",               "",           "",           "" }
 };
 
-const char *eos_fader_pre = "/eos/fader/"
-const char *faderLUT[3][8] = {
+const char *eosFaderPre = "/eos/fader/";
+const char *eosFaderLUT[3][8] = {
   { "D", "C", "0/2", "", "", "", "", "" },
   { "1/5", "1/6", "0/1", "1/4", "1/3", "99/1", "1/2", "1/1" },
   { "", "", "", "", "", "", "", "" } // effects returns; not used rn
 };
 
+const char *eosWheelPre = "/eos/wheel/level";
+
 // onyx LUTs (TODO: implement switching later)
 
-const char *onyx_kybd_pre = "/Mx/button/"
-const char *onyx_kybd_LUT[8][7] = {
+const char *onyxKybdPre = "/Mx/button/";
+const char *onyxKybdLUT[8][7] = {
   {"    ", "    ", "    ", "    ", "    ", "    ", "    "},
   {"    ", "    ", "    ", "    ", "    ", "    ", "    "},
   {"    ", "    ", "4332", "4331", "2001", "2003", "5107"},
@@ -114,10 +120,10 @@ const char *onyx_kybd_LUT[8][7] = {
   {"5411", "5301", "5206", "5205", "5204", "5413", "    "},
   {"6001", "5216", "5203", "5202", "5201", "5412", "    "},
   {"5106", "5402", "5213", "5212", "5200", "5104", "    "}
-}
+};
 
-const char *onyx_fader_pre = "/Mx/fader/"
-const char *onyx_fader_LUT[3][8] = {
+const char *onyxFaderPre = "/Mx/fader/";
+const char *onyxFaderLUT[3][8] = {
   { "", "", "2232", "", "", "", "", "" },
   { "4243", "4253", "2222", "4233", "4223", "2202", "4213", "4205" },
   { "", "", "", "", "", "", "", "" }
