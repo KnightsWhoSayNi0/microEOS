@@ -65,6 +65,12 @@ enum mode {
 const String EOS_HANDSHAKE_QUERY = "ETCOSC?";
 const String EOS_HANDSHAKE_REPLY = "OK";
 
+const String eosFaderConfigs = {
+	"/eos/fader/0/config/2",  // master pair
+	"/eos/fader/99/config/1", // gm fader (fix?)
+	"/eos/fader/1/config/6"	  // sub banks
+};
+
 const char *eosKybdPre = "/eos/key/";
 const char *eosKybdLUT[8][7] = { 
   { "softkey_6",    "softkey_5",    "softkey_4",  "softkey_3",      "softkey_2",  "softkey_1",  "effects" },

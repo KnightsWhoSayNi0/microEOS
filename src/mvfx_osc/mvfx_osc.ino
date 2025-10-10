@@ -44,9 +44,6 @@ SLIPEncodedSerial SLIPSerial(Serial);
     macros and constants
  ********************************************************************************/
 
-const String HANDSHAKE_QUERY = "ETCOSC?";
-const String HANDSHAKE_REPLY = "OK";
-
 // keyboard
 // selectors
 const int rowPins[3] = {A0, A1, A2};
@@ -88,14 +85,10 @@ void parseOSCMessage(String& msg)
 
     delay(1);
     
-    // fader setup with eos
-    String masterFaderConf("/eos/fader/0/config/2");
-    String gmFaderConf("/eos/fader/99/config/1");
-    String subBankConf("/eos/fader/1/config/6");
-
-    sendOSCMessage(masterFaderConf); // master pair
-    sendOSCMessage(gmFaderConf); // grandmaster fader
-    sendOSCMessage(subBankConf); // sub banks
+    // fader setup with eos 
+    for (int i = 0; i < eosFaderConfigs.length(); i++) {
+      sendOSCMessage(eosFaderConfigs[i]);
+    }
   }
 }
 
